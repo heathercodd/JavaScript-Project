@@ -17,9 +17,30 @@ let employeeInfo = [
 for (i = 0; i < employeeInfo.length; i++) {
     let myAllP = document.querySelector(`#placeholder`);
     let myNewP = document.createElement('p');
-    let myText = document.createTextNode(`Employee ${i}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+    let myText = document.createTextNode(`Employee Number ${i}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
     myNewP.appendChild(myText);
     myAllP.appendChild(myNewP);
 }
+
+
+let deleteButton = document.querySelector("#deleteButton");
+
+function deleteEmployee() {
+
+    let toDelete = window.prompt(`Enter the employee number to delete:`);
+    employeeInfo.splice(toDelete, 1);
+
+    document.querySelector(`#placeholder`).innerHTML = "";
+
+    for (i = 0; i < employeeInfo.length; i++) {
+        let myAllP = document.querySelector(`#placeholder`);
+        let myNewP = document.createElement('p');
+        let myText = document.createTextNode(`Employee Number ${i}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+        myNewP.appendChild(myText);
+        myAllP.appendChild(myNewP);
+    }
+
+}
+deleteButton.addEventListener("click", deleteEmployee);
 
 
