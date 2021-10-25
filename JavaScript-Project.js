@@ -13,7 +13,6 @@ let employeeInfo = [
     { "niNumber": "P843982B", "name": "Liam Smith", "phone": "7700 079101", "address": "46 Little Goat Road, Slough, SL5 38D", "department": "Sales" }
 ]
 
-
 // create employee id 
 employeeInfo.forEach(function (employee, i) {
     return employee.id = i;
@@ -26,7 +25,6 @@ for (i = 0; i < employeeInfo.length; i++) {
     let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
     myNewP.appendChild(myText);
     myAllP.appendChild(myNewP);
-    console.log(employeeInfo.id)
 }
 
 //deleting an employee 
@@ -55,15 +53,18 @@ function deleteEmployee() {
         for (i = 0; i < mynewarray.length; i++) {
             let myAllP = document.querySelector(`#placeholder`);
             let myNewP = document.createElement('p');
-            console.log(mynewarray)
             let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
             myNewP.appendChild(myText);
             myAllP.appendChild(myNewP);
-            console.log(mynewarray[i].id)
         }
     }
 }
 deleteButton.addEventListener("click", deleteEmployee);
+
+
+
+
+
 
 //filtering employees displayed by department 
 function selectDepartment() {
@@ -76,7 +77,6 @@ function selectDepartment() {
         for (i = 0; i < mynewarray.length; i++) {
             let myAllP = document.querySelector(`#placeholder`);
             let myNewP = document.createElement('p');
-            console.log(mynewarray)
             let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
             myNewP.appendChild(myText);
             myAllP.appendChild(myNewP);
@@ -93,19 +93,77 @@ function selectDepartment() {
     }
 }
 
+//editing an employee 
+let editButton = document.querySelector("#editButton");
 
-/*
-//TESTING HOW TO EDIT EMPLOYEE INFO
+function editEmployee() {
+    document.querySelector(`#numberhere`).innerHTML = "";
 
-employeeInfo[3].department = "IT";
-document.querySelector(`#placeholder`).innerHTML = "";
-for (i = 0; i < employeeInfo.length; i++) {
-    let myAllP = document.querySelector(`#placeholder`);
-    let myNewP = document.createElement('p');
-    let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
-    myNewP.appendChild(myText);
-    myAllP.appendChild(myNewP);
+    let editform = document.getElementById("editform");
+    if (editform.style.display == "none") {
+        editform.style.display = "block";
+    }
+
+    let toEdit = window.prompt(`Enter the number of the employee you would like to edit:`);
+
+    let myAllP = document.querySelector(`#numberhere`);
+    let myText = document.createTextNode(`Edit Employee ${toEdit} Details:`);
+    myAllP.appendChild(myText);
+
+    document.getElementById("id").readOnly = true;
+    document.getElementById("id").value = toEdit;
+
+}
+editButton.addEventListener("click", editEmployee);
+
+//submitting the edit 
+let submitEditButton = document.querySelector("#submitEditButton");
+
+function submitEdit() {
+    let idvalue = document.getElementById("id").value;
+    let EmployeeDepartment = document.getElementById("Employee Department");
+    let selectedoption = EmployeeDepartment.options[EmployeeDepartment.selectedIndex].text;
+
+    if (document.getElementById("nin").value) {
+        employeeInfo[idvalue].niNumber = document.getElementById("nin").value;
+    }
+    if (document.getElementById("name").value) {
+        employeeInfo[idvalue].name = document.getElementById("name").value;
+    }
+    if (document.getElementById("phone").value) {
+        employeeInfo[idvalue].phone = document.getElementById("phone").value;
+    }
+    if (document.getElementById("address").value) {
+        employeeInfo[idvalue].address = document.getElementById("address").value;
+    }
+    if (document.getElementById("department").value) {
+        employeeInfo[idvalue].department = document.getElementById("department").value;
+    }
+
+    document.querySelector(`#placeholder`).innerHTML = "";
+
+    if (selectedoption == "All") {
+        for (i = 0; i < employeeInfo.length; i++) {
+            let myAllP = document.querySelector(`#placeholder`);
+            let myNewP = document.createElement('p');
+            let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+            myNewP.appendChild(myText);
+            myAllP.appendChild(myNewP);
+        }
+    } else {
+        let mynewarray = employeeInfo.filter(function (employee) { return employee.department == selectedoption });
+        for (i = 0; i < mynewarray.length; i++) {
+            let myAllP = document.querySelector(`#placeholder`);
+            let myNewP = document.createElement('p');
+            let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
+            myNewP.appendChild(myText);
+            myAllP.appendChild(myNewP);
+        }
+    }
+    editform.style.display = "none";
+
 }
 
-*/
+
+
 
