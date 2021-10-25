@@ -12,11 +12,12 @@ let employeeInfo = [
     { "niNumber": "P505221B", "name": "Barry Field", "phone": "07457 414947", "address": "24 Grange Drive, Hatfield, HA4 92A", "department": "Sales" },
     { "niNumber": "P843982B", "name": "Liam Smith", "phone": "7700 079101", "address": "46 Little Goat Road, Slough, SL5 38D", "department": "Sales" }
 ]
+
+
 // create employee id 
 employeeInfo.forEach(function (employee, i) {
     return employee.id = i;
 });
-console.log(employeeInfo);
 
 //displaying the array on my page
 for (i = 0; i < employeeInfo.length; i++) {
@@ -25,6 +26,7 @@ for (i = 0; i < employeeInfo.length; i++) {
     let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
     myNewP.appendChild(myText);
     myAllP.appendChild(myNewP);
+    console.log(employeeInfo.id)
 }
 
 //deleting an employee 
@@ -35,6 +37,9 @@ function deleteEmployee() {
     let EmployeeDepartment = document.getElementById("Employee Department");
     let selectedoption = EmployeeDepartment.options[EmployeeDepartment.selectedIndex].text;
     employeeInfo.splice(toDelete, 1);
+    employeeInfo.forEach(function (employee, i) {
+        return employee.id = i;
+    });
     document.querySelector(`#placeholder`).innerHTML = "";
 
     if (selectedoption == "All") {
@@ -54,6 +59,7 @@ function deleteEmployee() {
             let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
             myNewP.appendChild(myText);
             myAllP.appendChild(myNewP);
+            console.log(mynewarray[i].id)
         }
     }
 }
@@ -67,7 +73,6 @@ function selectDepartment() {
     if (selectedoption !== "All") {
         let mynewarray = employeeInfo.filter(function (employee) { return employee.department == selectedoption });
         document.querySelector(`#placeholder`).innerHTML = "";
-        console.log(employeeInfo)
         for (i = 0; i < mynewarray.length; i++) {
             let myAllP = document.querySelector(`#placeholder`);
             let myNewP = document.createElement('p');
@@ -85,10 +90,22 @@ function selectDepartment() {
             myNewP.appendChild(myText);
             myAllP.appendChild(myNewP);
         }
-
     }
-
-
-
-
 }
+
+
+/*
+//TESTING HOW TO EDIT EMPLOYEE INFO
+
+employeeInfo[3].department = "IT";
+document.querySelector(`#placeholder`).innerHTML = "";
+for (i = 0; i < employeeInfo.length; i++) {
+    let myAllP = document.querySelector(`#placeholder`);
+    let myNewP = document.createElement('p');
+    let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+    myNewP.appendChild(myText);
+    myAllP.appendChild(myNewP);
+}
+
+*/
+
