@@ -93,7 +93,7 @@ function selectDepartment() {
     }
 }
 
-//editing an employee 
+//show the "edit an employee" form 
 let editButton = document.querySelector("#editButton");
 
 function editEmployee() {
@@ -163,6 +163,62 @@ function submitEdit() {
     editform.style.display = "none";
 
 }
+
+//show the "add an employee" form  
+let addButton = document.querySelector("#addButton");
+
+function addEmployee() {
+    let addform = document.getElementById("addform");
+    if (addform.style.display == "none") {
+        addform.style.display = "block";
+    }
+}
+addButton.addEventListener("click", addEmployee);
+
+
+//submitting the new employee
+function submitEmployee() {
+    let EmployeeDepartment = document.getElementById("Employee Department");
+    let selectedoption = EmployeeDepartment.options[EmployeeDepartment.selectedIndex].text;
+
+
+    let newEmployee = {};
+    newEmployee.niNumber = document.getElementById("addnin").value;
+    newEmployee.name = document.getElementById("addname").value;
+    newEmployee.phone = document.getElementById("addphone").value;
+    newEmployee.address = document.getElementById("addaddress").value;
+    newEmployee.department = document.getElementById("adddepartment").value;
+
+    addform.style.display = "none";
+
+    employeeInfo.push(newEmployee);
+    employeeInfo.forEach(function (employee, i) {
+        return employee.id = i;
+    });
+
+    document.querySelector(`#placeholder`).innerHTML = "";
+
+    if (selectedoption == "All") {
+        for (i = 0; i < employeeInfo.length; i++) {
+            let myAllP = document.querySelector(`#placeholder`);
+            let myNewP = document.createElement('p');
+            let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+            myNewP.appendChild(myText);
+            myAllP.appendChild(myNewP);
+        }
+    } else {
+        let mynewarray = employeeInfo.filter(function (employee) { return employee.department == selectedoption });
+        for (i = 0; i < mynewarray.length; i++) {
+            let myAllP = document.querySelector(`#placeholder`);
+            let myNewP = document.createElement('p');
+            let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
+            myNewP.appendChild(myText);
+            myAllP.appendChild(myNewP);
+        }
+    }
+
+}
+
 
 
 
