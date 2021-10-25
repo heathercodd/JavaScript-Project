@@ -12,13 +12,25 @@
 
 <body>
 
+    <!--delete employee button-->
     <button id="deleteButton">Delete an Employee</button>
 
+    <!-- filter by employee department dropdown-->
+    <label for="Employee Department">Choose a Department:</label>
+    <select id="Employee Department" onchange="selectDepartment()"> Department
+        <option value="all"> All </option>
+        <option value="finance"> Finance </option>
+        <option value="hr"> HR </option>
+        <option value="it"> IT </option>
+        <option value="sales"> Sales </option>
+    </select>
 
+    <!--headings on webpage-->
     <h1>HR Portal</h1>
     <h3>Employee Information</h3>
-    <div id="placeholder"></div>
 
+    <!-- placeholder for where employee data will be shown -->
+    <div id="placeholder"></div>
 
     <script type="text/javascript" src="./JavaScript-Project.js"></script>
 
