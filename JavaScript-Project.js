@@ -47,28 +47,31 @@ function confirmDelete() {
     let toDelete = document.getElementById("idToDelete").value;
     let EmployeeDepartment = document.getElementById("Employee Department");
     let selectedoption = EmployeeDepartment.options[EmployeeDepartment.selectedIndex].text;
-    employeeInfo.splice(toDelete, 1);
-    employeeInfo.forEach(function (employee, i) {
-        return employee.id = i;
-    });
-    document.querySelector(`#placeholder`).innerHTML = "";
 
-    if (selectedoption == "All") {
-        for (i = 0; i < employeeInfo.length; i++) {
-            let myAllP = document.querySelector(`#placeholder`);
-            let myNewP = document.createElement('p');
-            let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
-            myNewP.appendChild(myText);
-            myAllP.appendChild(myNewP);
-        }
-    } else {
-        let mynewarray = employeeInfo.filter(function (employee) { return employee.department == selectedoption });
-        for (i = 0; i < mynewarray.length; i++) {
-            let myAllP = document.querySelector(`#placeholder`);
-            let myNewP = document.createElement('p');
-            let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
-            myNewP.appendChild(myText);
-            myAllP.appendChild(myNewP);
+    if (isNaN(toDelete) == false) {
+        employeeInfo.splice(toDelete, 1);
+        employeeInfo.forEach(function (employee, i) {
+            return employee.id = i;
+        });
+        document.querySelector(`#placeholder`).innerHTML = "";
+
+        if (selectedoption == "All") {
+            for (i = 0; i < employeeInfo.length; i++) {
+                let myAllP = document.querySelector(`#placeholder`);
+                let myNewP = document.createElement('p');
+                let myText = document.createTextNode(`Employee Number ${employeeInfo[i].id}: ${employeeInfo[i].name}, ${employeeInfo[i].department}, ${employeeInfo[i].niNumber}, ${employeeInfo[i].phone}, ${employeeInfo[i].address}`);
+                myNewP.appendChild(myText);
+                myAllP.appendChild(myNewP);
+            }
+        } else {
+            let mynewarray = employeeInfo.filter(function (employee) { return employee.department == selectedoption });
+            for (i = 0; i < mynewarray.length; i++) {
+                let myAllP = document.querySelector(`#placeholder`);
+                let myNewP = document.createElement('p');
+                let myText = document.createTextNode(`Employee Number ${mynewarray[i].id}: ${mynewarray[i].name}, ${mynewarray[i].department}, ${mynewarray[i].niNumber}, ${mynewarray[i].phone}, ${mynewarray[i].address}`);
+                myNewP.appendChild(myText);
+                myAllP.appendChild(myNewP);
+            }
         }
     }
     deleteform.style.display = "none";
@@ -118,24 +121,29 @@ editButton.addEventListener("click", editEmployee);
 
 //show the "edit an employee" form 
 function confirmEdit() {
-    document.querySelector(`#numberhere`).innerHTML = "";
-
-    addform.style.display = "none";
-    deleteform.style.display = "none";
-    selecteditform.style.display = "none";
-    let editform = document.getElementById("editform");
-    if (editform.style.display == "none") {
-        editform.style.display = "block";
-    }
 
     let toEdit = document.getElementById("idToEdit").value;
 
-    let myAllP = document.querySelector(`#numberhere`);
-    let myText = document.createTextNode(`Edit Employee ${toEdit} Details:`);
-    myAllP.appendChild(myText);
+    if (isNaN(toEdit) == false) {
 
-    document.getElementById("id").readOnly = true;
-    document.getElementById("id").value = toEdit;
+        document.querySelector(`#numberhere`).innerHTML = "";
+
+        addform.style.display = "none";
+        deleteform.style.display = "none";
+        selecteditform.style.display = "none";
+        let editform = document.getElementById("editform");
+        if (editform.style.display == "none") {
+            editform.style.display = "block";
+        }
+
+        let myAllP = document.querySelector(`#numberhere`);
+        let myText = document.createTextNode(`Edit Employee ${toEdit} Details:`);
+        myAllP.appendChild(myText);
+
+        document.getElementById("id").readOnly = true;
+        document.getElementById("id").value = toEdit;
+    }
+    selecteditform.style.display = "none";
 
 }
 
@@ -242,8 +250,5 @@ function submitEmployee() {
     }
 
 }
-
-
-
 
 
