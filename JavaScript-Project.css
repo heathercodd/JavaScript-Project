@@ -1,0 +1,102 @@
+
+body{
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: ivory;
+}
+
+/* Buttons */
+button{
+    background-color: seagreen;
+    color: ivory;
+    border: none;
+    border-radius: 8px;    
+    font-size: 16px;
+    margin:10px;
+    padding: 16px;    
+}
+button:hover{
+    background-color:darkseagreen;
+}
+
+/* Headings */
+h1{
+    font-size: 80px; 
+    color: seagreen;
+    width:auto;
+    margin: auto;
+    text-align: center;    
+    padding: 30px;  
+}
+h2{
+    color: seagreen;
+}
+#parent{
+    display: flex;   
+}
+
+/* Employee Info display*/
+#container{
+    font-size: 20px;
+    background-color: thistle;
+    border:none;
+    border-radius: 16px;    
+    padding: 40px;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+/* Forms */
+fieldset{
+    background-color: cadetblue;
+    border:none;
+    border-radius: 16px;
+    font-size: 20px;
+    color: ivory;
+    width:200px;
+    margin-left: 30px;
+}
+input[type=text]{
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+}
+input[type=button]{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 16px;  
+    background-color:seagreen;
+    font-size: 16px;
+    color:ivory;   
+}
+input[type=button]:hover{
+    background-color: darkseagreen;
+}
+
+/* For the Department Selection dropbox */
+label{
+    display: inline-block;
+    width:200px;
+}
+select{
+    border: none;
+    border-radius: 16px;
+    padding:4px;
+}
+#selectdepartment{
+    background-color: seagreen;    
+    color: ivory;
+    border: none;
+    border-radius: 8px;
+    padding: 16px; 
+    font-size: 16px;
+    margin:10px;
+    float:right;
+}
+option{
+    background-color:seagreen;
+    font-size: 16px;
+    color:ivory ;
+}

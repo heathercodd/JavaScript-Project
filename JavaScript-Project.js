@@ -27,11 +27,24 @@ for (i = 0; i < employeeInfo.length; i++) {
     myAllP.appendChild(myNewP);
 }
 
-//deleting an employee 
+//show the "delete an employee" form
 let deleteButton = document.querySelector("#deleteButton");
-
 function deleteEmployee() {
-    let toDelete = window.prompt(`Enter the employee number to delete:`);
+    //hide other forms
+    addform.style.display = "none";
+    editform.style.display = "none";
+    selecteditform.style.display = "none";
+    //show delete form
+    let deleteform = document.getElementById("deleteform");
+    if (deleteform.style.display == "none") {
+        deleteform.style.display = "block";
+    }
+}
+deleteButton.addEventListener("click", deleteEmployee);
+
+//deleting an employee 
+function confirmDelete() {
+    let toDelete = document.getElementById("idToDelete").value;
     let EmployeeDepartment = document.getElementById("Employee Department");
     let selectedoption = EmployeeDepartment.options[EmployeeDepartment.selectedIndex].text;
     employeeInfo.splice(toDelete, 1);
@@ -58,13 +71,8 @@ function deleteEmployee() {
             myAllP.appendChild(myNewP);
         }
     }
+    deleteform.style.display = "none";
 }
-deleteButton.addEventListener("click", deleteEmployee);
-
-
-
-
-
 
 //filtering employees displayed by department 
 function selectDepartment() {
@@ -93,18 +101,34 @@ function selectDepartment() {
     }
 }
 
-//show the "edit an employee" form 
+//select the employee number to edit
 let editButton = document.querySelector("#editButton");
-
 function editEmployee() {
+    //hide other forms
+    addform.style.display = "none";
+    editform.style.display = "none";
+    deleteform.style.display = "none";
+    //show select edit form
+    let selecteditform = document.getElementById("selecteditform");
+    if (selecteditform.style.display == "none") {
+        selecteditform.style.display = "block";
+    }
+}
+editButton.addEventListener("click", editEmployee);
+
+//show the "edit an employee" form 
+function confirmEdit() {
     document.querySelector(`#numberhere`).innerHTML = "";
 
+    addform.style.display = "none";
+    deleteform.style.display = "none";
+    selecteditform.style.display = "none";
     let editform = document.getElementById("editform");
     if (editform.style.display == "none") {
         editform.style.display = "block";
     }
 
-    let toEdit = window.prompt(`Enter the number of the employee you would like to edit:`);
+    let toEdit = document.getElementById("idToEdit").value;
 
     let myAllP = document.querySelector(`#numberhere`);
     let myText = document.createTextNode(`Edit Employee ${toEdit} Details:`);
@@ -114,11 +138,8 @@ function editEmployee() {
     document.getElementById("id").value = toEdit;
 
 }
-editButton.addEventListener("click", editEmployee);
 
 //submitting the edit 
-let submitEditButton = document.querySelector("#submitEditButton");
-
 function submitEdit() {
     let idvalue = document.getElementById("id").value;
     let EmployeeDepartment = document.getElementById("Employee Department");
@@ -166,15 +187,18 @@ function submitEdit() {
 
 //show the "add an employee" form  
 let addButton = document.querySelector("#addButton");
-
 function addEmployee() {
+    //hide other forms
+    editform.style.display = "none";
+    deleteform.style.display = "none";
+    selecteditform.style.display = "none";
+    //show add form
     let addform = document.getElementById("addform");
     if (addform.style.display == "none") {
         addform.style.display = "block";
     }
 }
 addButton.addEventListener("click", addEmployee);
-
 
 //submitting the new employee
 function submitEmployee() {

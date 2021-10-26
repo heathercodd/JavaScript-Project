@@ -22,82 +22,120 @@
     <button id="addButton"> Add an Employee </button>
 
     <!-- filter by employee department dropdown-->
-    <label for="Employee Department">Choose a Department:</label>
-    <select id="Employee Department" onchange="selectDepartment()"> Department
-        <option value="all"> All </option>
-        <option value="finance"> Finance </option>
-        <option value="hr"> HR </option>
-        <option value="it"> IT </option>
-        <option value="sales"> Sales </option>
-    </select>
-
-    <!--headings on webpage-->
-    <h1>HR Portal</h1>
-    <h3>Employee Information</h3>
-
-    <!-- placeholder for where employee data will be shown -->
-    <div id="placeholder"></div>
-
-    <!--form to edit employee details-->
-    <div id="editform" style="display: none">
-        <h4 id="numberhere">:</h4>
-        <form>
-            <label for="id">Employee Number:</label>
-            <input type="text" id="id" />
-            <br />
-            <br />
-            <label for="nin">NI Number:</label>
-            <input type="text" id="nin" />
-            <br />
-            <br />
-            <label for="name">Name:</label>
-            <input type="text" id="name" />
-            <br />
-            <br />
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" />
-            <br />
-            <br />
-            <label for="address">Address:</label>
-            <input type="text" id="address" />
-            <br />
-            <br />
-            <label for="department">Department:</label>
-            <input type="text" id="department" />
-            <br />
-            <br />
-            <input type="button" id="submitEditButton" value="Submit Edit" onclick="submitEdit()" />
-        </form>
+    <div id="selectdepartment">
+        <label for="Employee Department">Select a Department:</label>
+        <select id="Employee Department" onchange="selectDepartment()"> Department
+            <option value="all"> All </option>
+            <option value="finance"> Finance </option>
+            <option value="hr"> HR </option>
+            <option value="it"> IT </option>
+            <option value="sales"> Sales </option>
+        </select>
     </div>
 
-    <!--form to add employee details-->
-    <div id="addform" style="display: none">
-        <h4> Add Employee: </h4>
-        <form>
-            <label for="addnin">NI Number:</label>
-            <input type="text" id="addnin" />
-            <br />
-            <br />
-            <label for="addname">Name:</label>
-            <input type="text" id="addname" />
-            <br />
-            <br />
-            <label for="addphone">Phone Number:</label>
-            <input type="text" id="addphone" />
-            <br />
-            <br />
-            <label for="addaddress">Address:</label>
-            <input type="text" id="addaddress" />
-            <br />
-            <br />
-            <label for="adddepartment">Department:</label>
-            <input type="text" id="adddepartment" />
-            <br />
-            <br />
-            <input type="button" id="submitEmployeeButton" value="Submit Employee" onclick="submitEmployee()" />
-        </form>
-    </div>
+    <!--heading on webpage-->
+    <h1>Human Resources Portal</h1>
 
+    <div id="parent">
+
+        <!-- placeholder for where employee data will be shown -->
+        <div id="container">
+            <h2>Employee Information:</h2>
+            <div id="placeholder"></div>
+        </div>
+
+        <!-- form to select employee to edit-->
+        <div id="selecteditform" style="display: none">
+            <fieldset>
+                <h4> Edit Employee: </h4>
+                <form>
+                    <input type="text" placeholder="Enter Employee Number" id="idToEdit" />
+                    <br />
+                    <br />
+                    <input type="button" id="editThisID" value="Confirm" onclick="confirmEdit()" />
+                </form>
+            </fieldset>
+        </div>
+
+        <!--form to edit employee details-->
+        <div id="editform" style="display: none">
+            <fieldset>
+                <h4 id="numberhere">:</h4>
+                <form>
+                    <label for="id">Employee Number:</label>
+                    <input type="text" id="id" />
+                    <br />
+                    <br />
+                    <label for="nin">NI Number:</label>
+                    <input type="text" id="nin" />
+                    <br />
+                    <br />
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" />
+                    <br />
+                    <br />
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" />
+                    <br />
+                    <br />
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" />
+                    <br />
+                    <br />
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" />
+                    <br />
+                    <br />
+                    <input type="button" id="submitEditButton" value="Submit Edit" onclick="submitEdit()" />
+                </form>
+            </fieldset>
+        </div>
+
+        <!--form to add employee details-->
+        <div id="addform" style="display: none">
+            <fieldset>
+                <h4> Add Employee: </h4>
+                <form>
+                    <label for="addnin">NI Number:</label>
+                    <input type="text" id="addnin" />
+                    <br />
+                    <br />
+                    <label for="addname">Name:</label>
+                    <input type="text" id="addname" />
+                    <br />
+                    <br />
+                    <label for="addphone">Phone Number:</label>
+                    <input type="text" id="addphone" />
+                    <br />
+                    <br />
+                    <label for="addaddress">Address:</label>
+                    <input type="text" id="addaddress" />
+                    <br />
+                    <br />
+                    <label for="adddepartment">Department:</label>
+                    <input type="text" id="adddepartment" />
+                    <br />
+                    <br />
+                    <input type="button" id="submitEmployeeButton" value="Submit Employee" onclick="submitEmployee()" />
+                </form>
+            </fieldset>
+        </div>
+
+        <!--form to select employee to delete-->
+        <div id="deleteform" style="display: none">
+            <fieldset>
+                <h4> Delete Employee: </h4>
+                <form>
+                    <input type="text" placeholder="Enter Employee Number" id="idToDelete" />
+                    <br />
+                    <br />
+                    <input type="button" id="confirmDeleteButton" value="Confirm" onclick="confirmDelete()" />
+                </form>
+            </fieldset>
+        </div>
+
+
+    </div>
 
     <script type="text/javascript" src="./JavaScript-Project.js"></script>
 
